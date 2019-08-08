@@ -838,6 +838,10 @@
       <Project>{80C6093C-47D5-41A1-9FA0-E218E82FA666}</Project>
       <Name>NFe.Danfe.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NFe.Danfe.Fast\NFe.Danfe.Fast.csproj">
+      <Project>{b7f6a2ff-fd0e-4b44-82b3-371605cd0510}</Project>
+      <Name>NFe.Danfe.Fast</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NFe.Danfe.Nativo\NFe.Danfe.Nativo.csproj">
       <Project>{ba27d218-484b-4f08-bab9-38c02181bded}</Project>
       <Name>NFe.Danfe.Nativo</Name>

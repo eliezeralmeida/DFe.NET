@@ -71,6 +71,8 @@ using RichTextBox = System.Windows.Controls.RichTextBox;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using WebBrowser = System.Windows.Controls.WebBrowser;
 using System.Windows.Media.Imaging;
+using NFe.Danfe.Base.NFe;
+using NFe.Danfe.Fast.NFe;
 using NFe.Danfe.Nativo.NFCe;
 using NFe.Utils;
 using NFe.Utils.Excecoes;
@@ -1796,6 +1798,39 @@ namespace NFe.AppTeste
                 if (!string.IsNullOrEmpty(ex.Message))
                     Funcoes.Mensagem(ex.Message, "Erro", MessageBoxButton.OK);
             }
+        }
+
+        private void BtnDanfeNFe_OnClick(object sender, RoutedEventArgs e)
+        {
+            var arquivoXml = Funcoes.BuscarArquivoXml();
+
+            if (File.Exists(arquivoXml) == false)
+            {
+                return;
+            }
+
+            var proc = new nfeProc().CarregarDeArquivoXml(arquivoXml);
+
+            var danfeCfg = new ConfiguracaoDanfeNfe()
+            {
+                Logomarca = null,
+                DuasLinhas = true,
+                DocumentoCancelado = false,
+                QuebrarLinhasObservacao = true,
+                ExibirResumoCanhoto = true,
+                ResumoCanhoto = "Resumo Canhoto",
+                ChaveContingencia = "",
+                ExibeCampoFatura = true,
+                ImprimirISSQN = true,
+                ImprimirDescPorc = false,
+                ImprimirTotalLiquido = true,
+                ImprimirUnidQtdeValor = ImprimirUnidQtdeValor.Comercial,
+                ExibirTotalTributos = true
+            };
+
+            var danfe = new DanfeFrNfe(proc, danfeCfg, "SH NOME", string.Empty);
+
+            danfe.Visualizar();
         }
     }
 }
